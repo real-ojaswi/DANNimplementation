@@ -22,9 +22,8 @@ For calculating determinacy and diversity, one can simply make use of the above 
 
 Originality of the codes:
 
-The codes in nwd.py and grl.py has been adapted from the repository by the authors of the original paper on DALN. The code provided was written for PyTorch and has been adapted for TensorFlow in this project. The link for the paper and the github repository is given below:
-https://openaccess.thecvf.com/content/CVPR2022/papers/Chen_Reusing_the_Task-Specific_Classifier_as_a_Discriminator_Discriminator-Free_Adversarial_Domain_CVPR_2022_paper.pdf
-https://github.com/xiaoachen98/DALN
+The codes in grl.py has been adapted from the repository: https://github.com/xiaoachen98/DALN. The code provided was written for PyTorch and has been adapted for TensorFlow in this project. The link for the paper is given below:
+https://arxiv.org/pdf/1505.07818.pdf
 
 The architecture of the model has been fine tuned based on several architectures adapted for several purposes. The architecture was made to be simple in order to cater for the low computational availability for the project.
 
