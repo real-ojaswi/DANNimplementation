@@ -1,3 +1,15 @@
+# DANNImplementation
+
+This is the full implementation of [Domain-Adversarial Training of Neural Networks](https://arxiv.org/abs/1505.07818)) The implementation is performed on TensorFlow. The 'DANN.ipynb' shows experiments on MNIST and USPS dataset. The model is trained on MNIST and its accuracy is checked on USPS dataset with and without Domain Adaptation. The 'grl.py' execute gradient reversal layer , and the code has been adapted from the [this repository] (https://github.com/xiaoachen98/DALN) which provides the code for PyTorch. 'DANNModel.py' has the code for the model. Other files have codes to aid training process and experimentation.
+
+The results shows significant increase in accuracy when its trained using DANN. My [another repository](https://github.com/thenoobcoderr/DALNimplementation) contains the experimentation using DALN for domain adaptation. You can have a look if you're interested and want to make comparisons.
+
+|Method|Source accuracy|Target accuracy|
+|-----|----------------|---------------|
+|Source only|0.9998|0.417|
+|DANN|0.9341|0.713|
+
+
 In order to train the model, follow the following procedure:
 
 First import keras and MNIST dataset and resize them to 32x32x3 in order to make
