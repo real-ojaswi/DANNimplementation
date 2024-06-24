@@ -1,48 +1,58 @@
-# DANNImplementation
+# Domain-Adversarial Training of Neural Networks (DANN) Implementation
 
-This is the full implementation of [Domain-Adversarial Training of Neural Networks](https://arxiv.org/abs/1505.07818)) The implementation is performed on TensorFlow. The 'DANN.ipynb' shows experiments on MNIST and USPS dataset. The model is trained on MNIST and its accuracy is checked on USPS dataset with and without Domain Adaptation. The 'grl.py' execute gradient reversal layer , and the code has been adapted from the [this repository] (https://github.com/xiaoachen98/DALN) which provides the code for PyTorch. 'DANNModel.py' has the code for the model. Other files have codes to aid training process and experimentation.
+This repository contains the implementation of Domain-Adversarial Training of Neural Networks (DANN) using TensorFlow. The `DANN.ipynb` notebook demonstrates experiments on the MNIST and USPS datasets. The model is trained on MNIST and its accuracy is evaluated on the USPS dataset both with and without domain adaptation techniques.
 
-The results shows significant increase in accuracy when its trained using DANN. My [another repository](https://github.com/thenoobcoderr/DALNimplementation) contains the experimentation using DALN for domain adaptation. You can have a look if you're interested and want to make comparisons.
+## Components
 
-|Method|Source accuracy|Target accuracy|
-|-----|----------------|---------------|
-|Source only|0.9998|0.417|
-|DANN|0.9341|0.713|
+- **DANNModel.py**: Contains the implementation of the DANN model.
+- **grl.py**: Implements the Gradient Reversal Layer, adapted from the [DALN repository](https://github.com/xiaoachen98/DALN) originally written for PyTorch.
+- **DALNtrain.py**: Provides training utilities for the DANN model.
+- **DisplayLogs.py**: Contains utilities for displaying and calculating accuracies during training.
+- **DANN.ipynb**: Jupyter notebook for conducting experiments and showcasing results.
 
+## Results
 
-In order to train the model, follow the following procedure:
+The experimental results show a significant increase in accuracy when using DANN compared to training without domain adaptation:
 
-First import keras and MNIST dataset and resize them to 32x32x3 in order to make
-them compatible with the model.
-Import Model from DALNModel.py and initialize it.
-Import train from DALNtrain.py and initialize a train object (trainer) with the arguments X_source,  y_source, model(model object), batch_size, X_target, y_target, epochs, source_only(boolean).
-Setting source_only argument as True sets the trainer to train the model without domain
-adaptation and setting it as False sets the trainer to train the model with domain adaptation.
-X_target, y_target are optional arguments depending upon your application. For example, if you are training the model without domain adaptation, you don't need to give X_target and y_target.
-The training process will display source accuracy and target accuracy or source accuracy only depending on if you've provided X_target and y_target or not.
-In order to predict labels from the model, you can use predict_label method of model object.
+| Method       | Source Accuracy | Target Accuracy |
+|--------------|-----------------|-----------------|
+| Source only  | 0.9998          | 0.417           |
+| DANN         | 0.9341          | 0.713           |
 
-### Calculating accuracy:
-Since, the training process will display source and target accuracy, it is easy to keep track of it.
-If you still want to calculate accuracy by yourself, the first method is of-course predicting the labels using the model and then using the accuracy_score function.
-You can also import display_logs from DisplayLogs.py if you don't want to manually calculating accuracies for source and target data. You can initialize display_logs object by giving arguments such as X_source,  y_source, model(model object), X_target, y_target, epochs(only for logging purpose), and source_only(boolean). Then you can call accuracy method of display_logs object that returns the dictionary having source accuracy and target accuracy or only source_accuracy depending on the arguments provided.
-There is also a plot_tsne, plot_pca, and plot_tsne_features for plotting the t-SNE, and PCA projections of the features.
+## Training Procedure
 
+To train the model:
 
-### Originality of the codes:
+1. **Import Required Modules**: Import TensorFlow and load the MNIST dataset, resizing images to 32x32x3 for compatibility.
+   
+2. **Initialize Model**: Import the model from `DANNModel.py` and initialize it.
 
-The codes in grl.py has been adapted from the repository: https://github.com/xiaoachen98/DALN. The code provided was written for PyTorch and has been adapted for TensorFlow in this project. The link for the paper is given below:
-https://arxiv.org/pdf/1505.07818.pdf
+3. **Training Setup**: Import `train` from `DALNtrain.py` and initialize a training object (`trainer`) with parameters including `X_source`, `y_source`, `model`, `batch_size`, `X_target`, `y_target`, `epochs`, and `source_only` boolean flag.
 
-The architecture of the model has been fine tuned based on several architectures adapted for several purposes. The architecture was made to be simple in order to cater for the low computational availability for the project.
+4. **Run Training**: Set `source_only=True` to train without domain adaptation, or `source_only=False` to train with domain adaptation.
 
-The rest of the codes have been created by the author.
+5. **Prediction**: Use the `predict_label` method of the model object to predict labels.
 
-Datasets:
+## Calculating Accuracy
 
-MNIST and USPS dataset have been used for this project. They both consist of a set of handwritten digits from 0 to 9. They are of small sizes and have enough samples to carry out this experiment. Also they have considerable differences in the samples, that makes them suited for this project. MNIST dataset was imported from tensorflow.keras.datasets.mnist and USPS dataset was imported from extra_keras.usps.
+- During training, source and target accuracies are displayed.
+- Alternatively, use the `accuracy_score` function from scikit-learn or import `display_logs` from `DisplayLogs.py` for automated accuracy calculation and logging.
 
+## Originality of Code
 
+- The code in `grl.py` was adapted from the DALN repository originally written in PyTorch.
+- The architecture of the model has been simplified for computational efficiency while retaining effectiveness.
 
+## Datasets
 
+- **MNIST**: Handwritten digits dataset imported from `tensorflow.keras.datasets.mnist`.
+- **USPS**: Handwritten digits dataset imported from `extra_keras.usps`.
 
+Both datasets are small-sized with sufficient samples, making them suitable for this domain adaptation experiment due to their notable differences.
+
+## References
+
+- [DALN Repository](https://github.com/xiaoachen98/DALN)
+- [Original Paper on Domain-Adversarial Neural Networks](https://arxiv.org/pdf/1505.07818.pdf)
+
+Feel free to explore and contribute to this repository to enhance domain adaptation techniques using DANN.
